@@ -3,66 +3,232 @@
 <head>
   <meta charset="UTF-8">
   <title>Km / Mile Unit Converter</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 480px;
+      margin: 40px auto;
+      color: #202124;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      font-size: 16px;
+      font-weight: normal;
+      color: #444;
+      margin-top: 0;
+    }
+
+    .converter-card {
+      background: #ededed;
+      border-radius: 8px;
+      padding: 20px;
+      position: relative;
+    }
+
+    .converter-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .converter-row label {
+      width: 45px;
+      font-weight: bold;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    .converter-row input[type="text"] {
+      flex: 1;
+      padding: 8px;
+      font-size: 15px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background: #fff;
+    }
+
+    .converter-row input[type="text"]:focus {
+      outline: none;
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 1px #1a73e8;
+    }
+
+    .converter-row .unit-label {
+      width: 90px;
+      font-weight: bold;
+      margin-left: 12px;
+    }
+
+    #swap-btn {
+      position: absolute;
+      right: 20px;
+      top: 42px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      line-height: 1;
+      color: #1b5e20;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .converter-buttons {
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+
+    .converter-buttons button {
+      background: #1b5e20;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 10px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .converter-buttons button:hover {
+      background: #164a1a;
+    }
+
+    #result {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    #result strong {
+      color: #c00;
+    }
+  </style>
 </head>
 <body>
-  <h1>Kilometer &lt;-&gt; Mile Converter</h1>
+  <h1>The Pursuit Unit Converter</h1>
+  <h2>Convert km to miles</h2>
+  <p>Please provide values below to convert kilometer [km] to mile [mi, mi(Int)], or vice versa.</p>
 
-  <form id="converter-form">
-    <label for="value-input">Value</label>
-    <input type="number" id="value-input" step="any" placeholder="Enter a number">
+  <div class="converter-card">
+    <button type="button" id="swap-btn" title="Swap units" aria-label="Swap units">&#8645;</button>
 
-    <fieldset>
-      <legend>Direction</legend>
-      <label>
-        <input type="radio" name="direction" value="km-to-mi" checked>
-        Kilometers to Miles
-      </label>
-      <label>
-        <input type="radio" name="direction" value="mi-to-km">
-        Miles to Kilometers
-      </label>
-    </fieldset>
+    <div class="converter-row">
+      <label for="from-input">From:</label>
+      <input type="text" id="from-input" inputmode="decimal" placeholder="">
+      <span class="unit-label" id="from-unit">kilometer</span>
+    </div>
 
-    <button type="submit" id="convert-btn">Convert</button>
-  </form>
+    <div class="converter-row">
+      <label for="to-input">To:</label>
+      <input type="text" id="to-input" inputmode="decimal" placeholder="">
+      <span class="unit-label" id="to-unit">mile</span>
+    </div>
 
-  <p id="result"></p>
+    <div class="converter-buttons">
+      <button type="button" id="convert-btn">Convert</button>
+      <button type="button" id="clear-btn">Clear</button>
+    </div>
+
+    <p id="result"></p>
+  </div>
 
   <script>
-    const KM_TO_MI = 0.621371;
+    const KM_PER_MI = 1.609344;
+    const MI_PER_KM = 1 / KM_PER_MI;
 
-    function convert(value, direction) {
-      if (direction === "km-to-mi") {
-        return value * KM_TO_MI;
-      }
-      return value / KM_TO_MI;
-    }
+    let fromUnit = "kilometer";
+    let toUnit = "mile";
+    let lastSource = null;
 
-    function formatResult(value, direction) {
-      const fromUnit = direction === "km-to-mi" ? "km" : "mi";
-      const toUnit = direction === "km-to-mi" ? "mi" : "km";
-      const converted = convert(value, direction);
-      const rounded = Math.round(converted * 100000) / 100000;
-      return `${value} ${fromUnit} = ${rounded} ${toUnit}`;
-    }
-
-    const form = document.getElementById("converter-form");
-    const valueInput = document.getElementById("value-input");
+    const fromInput = document.getElementById("from-input");
+    const toInput = document.getElementById("to-input");
+    const fromUnitEl = document.getElementById("from-unit");
+    const toUnitEl = document.getElementById("to-unit");
     const resultEl = document.getElementById("result");
+    const swapBtn = document.getElementById("swap-btn");
+    const convertBtn = document.getElementById("convert-btn");
+    const clearBtn = document.getElementById("clear-btn");
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
+    function convert(value, from, to) {
+      if (from === to) return value;
+      return from === "kilometer" ? value * MI_PER_KM : value * KM_PER_MI;
+    }
 
-      const rawValue = valueInput.value.trim();
-      const value = parseFloat(rawValue);
+    function formatNumber(n) {
+      return parseFloat(n.toFixed(9)).toString();
+    }
 
-      if (rawValue === "" || Number.isNaN(value)) {
-        resultEl.textContent = "Please enter a valid number.";
+    function updateResult(sourceValue, sourceUnit, targetValue, targetUnit) {
+      resultEl.innerHTML =
+        `<strong>Result:</strong> ${sourceValue} ${sourceUnit} = ${targetValue} ${targetUnit}`;
+    }
+
+    function clearResult() {
+      resultEl.innerHTML = "";
+    }
+
+    function recalcFromSource(sourceInput, sourceUnit, targetInput, targetUnit) {
+      const raw = sourceInput.value.trim();
+      const value = parseFloat(raw);
+
+      if (raw === "" || Number.isNaN(value)) {
+        targetInput.value = "";
+        clearResult();
         return;
       }
 
-      const direction = form.elements["direction"].value;
-      resultEl.textContent = formatResult(value, direction);
+      const converted = formatNumber(convert(value, sourceUnit, targetUnit));
+      targetInput.value = converted;
+      updateResult(raw, sourceUnit, converted, targetUnit);
+    }
+
+    fromInput.addEventListener("input", () => {
+      lastSource = "from";
+      recalcFromSource(fromInput, fromUnit, toInput, toUnit);
+    });
+
+    toInput.addEventListener("input", () => {
+      lastSource = "to";
+      recalcFromSource(toInput, toUnit, fromInput, fromUnit);
+    });
+
+    swapBtn.addEventListener("click", () => {
+      [fromUnit, toUnit] = [toUnit, fromUnit];
+      fromUnitEl.textContent = fromUnit;
+      toUnitEl.textContent = toUnit;
+
+      const fromValue = fromInput.value;
+      fromInput.value = toInput.value;
+      toInput.value = fromValue;
+
+      if (lastSource === "from") {
+        recalcFromSource(toInput, toUnit, fromInput, fromUnit);
+        lastSource = "to";
+      } else if (lastSource === "to") {
+        recalcFromSource(fromInput, fromUnit, toInput, toUnit);
+        lastSource = "from";
+      } else {
+        clearResult();
+      }
+    });
+
+    convertBtn.addEventListener("click", () => {
+      if (lastSource === "to") {
+        recalcFromSource(toInput, toUnit, fromInput, fromUnit);
+      } else {
+        recalcFromSource(fromInput, fromUnit, toInput, toUnit);
+      }
+    });
+
+    clearBtn.addEventListener("click", () => {
+      fromInput.value = "";
+      toInput.value = "";
+      lastSource = null;
+      clearResult();
     });
   </script>
 </body>
