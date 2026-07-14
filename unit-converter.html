@@ -3,28 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <title>Km / Mile Unit Converter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@600&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --cream: #F5EEE4;
+      --blue: #5D79C9;
+      --coral: #EE8F6E;
+      --chartreuse: #D7DC4E;
+      --navy: #1B2233;
+      --white: #FFFFFF;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Barlow", Arial, Helvetica, sans-serif;
       max-width: 480px;
       margin: 40px auto;
-      color: #202124;
+      padding: 0 20px;
+      background: var(--cream);
+      color: var(--navy);
     }
 
     h1 {
-      font-size: 22px;
+      font-family: "Anton", "Barlow", sans-serif;
+      font-size: 42px;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--blue);
       margin-bottom: 4px;
     }
 
     h2 {
-      font-size: 16px;
-      font-weight: normal;
-      color: #444;
+      font-family: "Oswald", "Barlow", sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--coral);
       margin-top: 0;
     }
 
+    p {
+      font-family: "Barlow", sans-serif;
+      color: var(--navy);
+    }
+
     .converter-card {
-      background: #ededed;
+      background: var(--coral);
       border-radius: 8px;
       padding: 20px;
       position: relative;
@@ -38,7 +65,9 @@
 
     .converter-row label {
       width: 45px;
-      font-weight: bold;
+      font-family: "Barlow", sans-serif;
+      font-weight: 600;
+      color: var(--navy);
       text-align: right;
       margin-right: 10px;
     }
@@ -46,21 +75,25 @@
     .converter-row input[type="text"] {
       flex: 1;
       padding: 8px;
+      font-family: "Barlow", sans-serif;
       font-size: 15px;
-      border: 1px solid #333;
+      color: var(--navy);
+      border: 1px solid var(--navy);
       border-radius: 4px;
-      background: #fff;
+      background: var(--white);
     }
 
     .converter-row input[type="text"]:focus {
       outline: none;
-      border-color: #1a73e8;
-      box-shadow: 0 0 0 1px #1a73e8;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 1px var(--blue);
     }
 
     .converter-row .unit-label {
       width: 90px;
-      font-weight: bold;
+      font-family: "Oswald", sans-serif;
+      font-weight: 600;
+      color: var(--navy);
       margin-left: 12px;
     }
 
@@ -72,7 +105,7 @@
       border: none;
       font-size: 22px;
       line-height: 1;
-      color: #1b5e20;
+      color: var(--blue);
       cursor: pointer;
       padding: 0;
     }
@@ -83,11 +116,12 @@
     }
 
     .converter-buttons button {
-      background: #1b5e20;
-      color: #fff;
+      background: var(--chartreuse);
+      color: var(--navy);
       border: none;
       border-radius: 4px;
-      font-weight: bold;
+      font-family: "Barlow", sans-serif;
+      font-weight: 600;
       font-size: 14px;
       padding: 10px 20px;
       margin-right: 10px;
@@ -95,16 +129,18 @@
     }
 
     .converter-buttons button:hover {
-      background: #164a1a;
+      background: #c3c93f;
     }
 
     #result {
+      font-family: "Barlow", sans-serif;
       margin: 0;
       font-size: 15px;
+      color: var(--navy);
     }
 
     #result strong {
-      color: #c00;
+      color: var(--blue);
     }
   </style>
 </head>
