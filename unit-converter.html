@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Km / Mile Unit Converter</title>
+</head>
+<body>
+  <h1>Kilometer &lt;-&gt; Mile Converter</h1>
+
+  <form id="converter-form">
+    <label for="value-input">Value</label>
+    <input type="number" id="value-input" step="any" placeholder="Enter a number">
+
+    <fieldset>
+      <legend>Direction</legend>
+      <label>
+        <input type="radio" name="direction" value="km-to-mi" checked>
+        Kilometers to Miles
+      </label>
+      <label>
+        <input type="radio" name="direction" value="mi-to-km">
+        Miles to Kilometers
+      </label>
+    </fieldset>
+
+    <button type="submit" id="convert-btn">Convert</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    const KM_TO_MI = 0.621371;
+
+    function convert(value, direction) {
+      if (direction === "km-to-mi") {
+        return value * KM_TO_MI;
+      }
+      return value / KM_TO_MI;
+    }
+
+    function formatResult(value, direction) {
+      const fromUnit = direction === "km-to-mi" ? "km" : "mi";
+      const toUnit = direction === "km-to-mi" ? "mi" : "km";
+      const converted = convert(value, direction);
+      const rounded = Math.round(converted * 100000) / 100000;
+      return `${value} ${fromUnit} = ${rounded} ${toUnit}`;
+    }
+
+    const form = document.getElementById("converter-form");
+    const valueInput = document.getElementById("value-input");
+    const resultEl = document.getElementById("result");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const rawValue = valueInput.value.trim();
+      const value = parseFloat(rawValue);
+
+      if (rawValue === "" || Number.isNaN(value)) {
+        resultEl.textContent = "Please enter a valid number.";
+        return;
+      }
+
+      const direction = form.elements["direction"].value;
+      resultEl.textContent = formatResult(value, direction);
+    });
+  </script>
+</body>
+</html>
