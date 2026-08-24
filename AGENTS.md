@@ -16,3 +16,6 @@ manifest, lint config, or automated test suite.
 - Lint/test/build: none exist. Do not invent or add tooling unless explicitly asked.
 - Conversion logic lives in `unit-converter.js`; the constant
   `KM_PER_MI = 1.609344` drives conversion.
+- Production hosting is GitHub Pages via `.github/workflows/deploy-pages.yml`.
+  The live URL is `https://ariletice.github.io/KM-Mile-Unit-Converter/` once
+  Pages is enabled (Settings → Pages → Source: GitHub Actions).

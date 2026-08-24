@@ -27,6 +27,22 @@ Then open:
 
 Any other static server pointed at this directory works the same way (for example `npx serve .` if you already have Node). There is nothing to install for the converter itself.
 
+## Deploy
+
+The site is a static GitHub Pages app. After Pages is enabled with **GitHub Actions** as the source, pushes to `main` publish:
+
+- [https://ariletice.github.io/KM-Mile-Unit-Converter/](https://ariletice.github.io/KM-Mile-Unit-Converter/)
+- [https://ariletice.github.io/KM-Mile-Unit-Converter/unit-converter.html](https://ariletice.github.io/KM-Mile-Unit-Converter/unit-converter.html)
+
+Workflow: [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). It copies `index.html`, `unit-converter.html`, `unit-converter.css`, and `unit-converter.js` into the Pages artifact. `index.html` redirects `/` to the converter.
+
+To enable hosting (one-time, repo admin):
+
+1. GitHub repo **Settings → Pages**
+2. **Source:** GitHub Actions
+
+Then re-run the **Deploy GitHub Pages** workflow if the first run failed before Pages was enabled.
+
 ## Project structure
 
 | File | Role |
