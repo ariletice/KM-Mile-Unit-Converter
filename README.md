@@ -1,6 +1,8 @@
 # The Pursuit Unit Converter
 
-A static web page that converts **kilometers** to **international miles** and the reverse. There is no framework, bundler, or backend—open one HTML file (served over HTTP) and convert.
+**Live site:** [https://ariletice.github.io/KM-Mile-Unit-Converter/](https://ariletice.github.io/KM-Mile-Unit-Converter/)
+
+A static web page that converts **kilometers** to **international miles** and the reverse. There is no framework, bundler, or backend.
 
 The app is branded **The Pursuit Unit Converter** and styled with a cream, blue, coral, and chartreuse palette.
 
@@ -13,35 +15,15 @@ The app is branded **The Pursuit Unit Converter** and styled with a cream, blue,
 - A **kilometer-to-mile table** for 0.01 km through 1000 km
 - A short **how-to** with the exact factors and a 15 km example
 
-## Quick start
+## Use the converter
 
-Serve the repository root with any static file server. Do **not** open `unit-converter.html` as a `file://` URL—the stylesheet and script will not load.
+Open the deployed app:
 
-```bash
-python3 -m http.server 8000
-```
+[https://ariletice.github.io/KM-Mile-Unit-Converter/](https://ariletice.github.io/KM-Mile-Unit-Converter/)
 
-Then open:
+(`index.html` redirects `/` to [unit-converter.html](https://ariletice.github.io/KM-Mile-Unit-Converter/unit-converter.html).)
 
-[http://localhost:8000/unit-converter.html](http://localhost:8000/unit-converter.html)
-
-Any other static server pointed at this directory works the same way (for example `npx serve .` if you already have Node). There is nothing to install for the converter itself.
-
-## Deploy
-
-The site is a static GitHub Pages app. After Pages is enabled with **GitHub Actions** as the source, pushes to `main` publish:
-
-- [https://ariletice.github.io/KM-Mile-Unit-Converter/](https://ariletice.github.io/KM-Mile-Unit-Converter/)
-- [https://ariletice.github.io/KM-Mile-Unit-Converter/unit-converter.html](https://ariletice.github.io/KM-Mile-Unit-Converter/unit-converter.html)
-
-Workflow: [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml). It copies `index.html`, `unit-converter.html`, `unit-converter.css`, and `unit-converter.js` into the Pages artifact. `index.html` redirects `/` to the converter.
-
-To enable hosting (one-time, repo admin):
-
-1. GitHub repo **Settings → Pages**
-2. **Source:** GitHub Actions
-
-Then re-run the **Deploy GitHub Pages** workflow if the first run failed before Pages was enabled.
+Pushes to `main` republish the site via [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml).
 
 ## Project structure
 
@@ -104,6 +86,14 @@ Color tokens in `unit-converter.css`:
 The layout is a single column, `max-width: 480px`.
 
 ## Development
+
+Serve the repository root with any static file server. Do **not** open `unit-converter.html` as a `file://` URL—the stylesheet and script will not load.
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open [http://localhost:8000/unit-converter.html](http://localhost:8000/unit-converter.html).
 
 - Edit HTML, CSS, or JS and reload the browser. There is no hot reload.
 - No package manager, lint config, test suite, or production build.
