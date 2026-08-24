@@ -1,0 +1,185 @@
+:root {
+  --cream: #F5EEE4;
+  --blue: #5D79C9;
+  --coral: #EE8F6E;
+  --chartreuse: #D7DC4E;
+  --navy: #1B2233;
+  --white: #FFFFFF;
+}
+
+body {
+  font-family: "Barlow", Arial, Helvetica, sans-serif;
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 0 20px;
+  background: var(--cream);
+  color: var(--navy);
+}
+
+h1 {
+  font-family: "Anton", "Barlow", sans-serif;
+  font-size: 42px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+
+h2 {
+  font-family: "Oswald", "Barlow", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--coral);
+  margin-top: 0;
+}
+
+p {
+  font-family: "Barlow", sans-serif;
+  color: var(--navy);
+}
+
+.unit-pair {
+  white-space: nowrap;
+}
+
+.converter-card {
+  background: var(--coral);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+}
+
+.converter-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.converter-row label {
+  width: 45px;
+  font-family: "Barlow", sans-serif;
+  font-weight: 600;
+  color: var(--navy);
+  text-align: right;
+  margin-right: 10px;
+}
+
+.converter-row input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  font-family: "Barlow", sans-serif;
+  font-size: 15px;
+  color: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 4px;
+  background: var(--white);
+}
+
+.converter-row input[type="text"]:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 1px var(--blue);
+}
+
+.converter-row .unit-label {
+  width: 90px;
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  color: var(--navy);
+  margin-left: 12px;
+}
+
+#swap-btn {
+  position: absolute;
+  right: 20px;
+  top: 42px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--blue);
+  cursor: pointer;
+  padding: 0;
+}
+
+.converter-buttons {
+  margin-top: 16px;
+  margin-bottom: 12px;
+}
+
+.converter-buttons button {
+  background: var(--chartreuse);
+  color: var(--navy);
+  border: none;
+  border-radius: 4px;
+  font-family: "Barlow", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.converter-buttons button:hover {
+  background: #c3c93f;
+}
+
+#result {
+  font-family: "Barlow", sans-serif;
+  margin: 0;
+  font-size: 15px;
+  color: var(--navy);
+}
+
+#result strong {
+  color: var(--blue);
+}
+
+.reference {
+  margin-top: 32px;
+  margin-bottom: 40px;
+}
+
+.reference h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.reference h2:first-of-type {
+  margin-top: 0;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.reference table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Barlow", sans-serif;
+  font-size: 14px;
+  color: var(--navy);
+}
+
+.reference th,
+.reference td {
+  border: 1px solid var(--navy);
+  padding: 8px 10px;
+  text-align: left;
+}
+
+.reference th {
+  font-family: "Oswald", "Barlow", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  background: var(--coral);
+  color: var(--navy);
+}
+
+.reference td {
+  background: var(--white);
+}

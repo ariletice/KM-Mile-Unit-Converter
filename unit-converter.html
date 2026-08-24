@@ -6,148 +6,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@600&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --cream: #F5EEE4;
-      --blue: #5D79C9;
-      --coral: #EE8F6E;
-      --chartreuse: #D7DC4E;
-      --navy: #1B2233;
-      --white: #FFFFFF;
-    }
-
-    body {
-      font-family: "Barlow", Arial, Helvetica, sans-serif;
-      max-width: 480px;
-      margin: 40px auto;
-      padding: 0 20px;
-      background: var(--cream);
-      color: var(--navy);
-    }
-
-    h1 {
-      font-family: "Anton", "Barlow", sans-serif;
-      font-size: 42px;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--blue);
-      margin-bottom: 4px;
-    }
-
-    h2 {
-      font-family: "Oswald", "Barlow", sans-serif;
-      font-weight: 600;
-      font-size: 18px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--coral);
-      margin-top: 0;
-    }
-
-    p {
-      font-family: "Barlow", sans-serif;
-      color: var(--navy);
-    }
-
-    .converter-card {
-      background: var(--coral);
-      border-radius: 8px;
-      padding: 20px;
-      position: relative;
-    }
-
-    .converter-row {
-      display: flex;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .converter-row label {
-      width: 45px;
-      font-family: "Barlow", sans-serif;
-      font-weight: 600;
-      color: var(--navy);
-      text-align: right;
-      margin-right: 10px;
-    }
-
-    .converter-row input[type="text"] {
-      flex: 1;
-      padding: 8px;
-      font-family: "Barlow", sans-serif;
-      font-size: 15px;
-      color: var(--navy);
-      border: 1px solid var(--navy);
-      border-radius: 4px;
-      background: var(--white);
-    }
-
-    .converter-row input[type="text"]:focus {
-      outline: none;
-      border-color: var(--blue);
-      box-shadow: 0 0 0 1px var(--blue);
-    }
-
-    .converter-row .unit-label {
-      width: 90px;
-      font-family: "Oswald", sans-serif;
-      font-weight: 600;
-      color: var(--navy);
-      margin-left: 12px;
-    }
-
-    #swap-btn {
-      position: absolute;
-      right: 20px;
-      top: 42px;
-      background: none;
-      border: none;
-      font-size: 22px;
-      line-height: 1;
-      color: var(--blue);
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .converter-buttons {
-      margin-top: 16px;
-      margin-bottom: 12px;
-    }
-
-    .converter-buttons button {
-      background: var(--chartreuse);
-      color: var(--navy);
-      border: none;
-      border-radius: 4px;
-      font-family: "Barlow", sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 10px 20px;
-      margin-right: 10px;
-      cursor: pointer;
-    }
-
-    .converter-buttons button:hover {
-      background: #c3c93f;
-    }
-
-    #result {
-      font-family: "Barlow", sans-serif;
-      margin: 0;
-      font-size: 15px;
-      color: var(--navy);
-    }
-
-    #result strong {
-      color: var(--blue);
-    }
-  </style>
+  <link rel="stylesheet" href="unit-converter.css">
 </head>
 <body>
   <h1>The Pursuit Unit Converter</h1>
   <h2>Convert km to miles</h2>
-  <p>Please provide values below to convert kilometer [km] to mile [mi, mi(Int)], or vice versa.</p>
+  <p>Please provide values below to convert <span class="unit-pair">kilometer [km] to mile [mi, mi(Int)]</span>,<br>or vice versa.</p>
 
   <div class="converter-card">
     <button type="button" id="swap-btn" title="Swap units" aria-label="Swap units">&#8645;</button>
@@ -172,100 +36,39 @@
     <p id="result"></p>
   </div>
 
-  <script>
-    const KM_PER_MI = 1.609344;
-    const MI_PER_KM = 1 / KM_PER_MI;
+  <section class="reference" aria-label="Kilometer to mile conversion reference">
+    <h2>Kilometer to Mile Conversion Table</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Kilometer [km]</th>
+            <th>Mile [mi, mi(Int)]</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>0.01 km</td><td>0.0062137119 mi, mi(Int)</td></tr>
+          <tr><td>0.1 km</td><td>0.0621371192 mi, mi(Int)</td></tr>
+          <tr><td>1 km</td><td>0.6213711922 mi, mi(Int)</td></tr>
+          <tr><td>2 km</td><td>1.2427423845 mi, mi(Int)</td></tr>
+          <tr><td>3 km</td><td>1.8641135767 mi, mi(Int)</td></tr>
+          <tr><td>5 km</td><td>3.1068559612 mi, mi(Int)</td></tr>
+          <tr><td>10 km</td><td>6.2137119224 mi, mi(Int)</td></tr>
+          <tr><td>20 km</td><td>12.4274238447 mi, mi(Int)</td></tr>
+          <tr><td>50 km</td><td>31.0685596119 mi, mi(Int)</td></tr>
+          <tr><td>100 km</td><td>62.1371192237 mi, mi(Int)</td></tr>
+          <tr><td>1000 km</td><td>621.3711922373 mi, mi(Int)</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    let fromUnit = "kilometer";
-    let toUnit = "mile";
-    let lastSource = null;
+    <h2>How to Convert Kilometer to Mile</h2>
+    <p>1 km = 0.6213711922 mi, mi(Int)<br>
+       1 mi, mi(Int) = 1.609344 km</p>
+    <p>Example: convert 15 km to mi, mi(Int):<br>
+       15 km = 15 × 0.6213711922 mi, mi(Int) = 9.3205678836 mi, mi(Int)</p>
+  </section>
 
-    const fromInput = document.getElementById("from-input");
-    const toInput = document.getElementById("to-input");
-    const fromUnitEl = document.getElementById("from-unit");
-    const toUnitEl = document.getElementById("to-unit");
-    const resultEl = document.getElementById("result");
-    const swapBtn = document.getElementById("swap-btn");
-    const convertBtn = document.getElementById("convert-btn");
-    const clearBtn = document.getElementById("clear-btn");
-
-    function convert(value, from, to) {
-      if (from === to) return value;
-      return from === "kilometer" ? value * MI_PER_KM : value * KM_PER_MI;
-    }
-
-    function formatNumber(n) {
-      return parseFloat(n.toFixed(9)).toString();
-    }
-
-    function updateResult(sourceValue, sourceUnit, targetValue, targetUnit) {
-      resultEl.innerHTML =
-        `<strong>Result:</strong> ${sourceValue} ${sourceUnit} = ${targetValue} ${targetUnit}`;
-    }
-
-    function clearResult() {
-      resultEl.innerHTML = "";
-    }
-
-    function recalcFromSource(sourceInput, sourceUnit, targetInput, targetUnit) {
-      const raw = sourceInput.value.trim();
-      const value = parseFloat(raw);
-
-      if (raw === "" || Number.isNaN(value)) {
-        targetInput.value = "";
-        clearResult();
-        return;
-      }
-
-      const converted = formatNumber(convert(value, sourceUnit, targetUnit));
-      targetInput.value = converted;
-      updateResult(raw, sourceUnit, converted, targetUnit);
-    }
-
-    fromInput.addEventListener("input", () => {
-      lastSource = "from";
-      recalcFromSource(fromInput, fromUnit, toInput, toUnit);
-    });
-
-    toInput.addEventListener("input", () => {
-      lastSource = "to";
-      recalcFromSource(toInput, toUnit, fromInput, fromUnit);
-    });
-
-    swapBtn.addEventListener("click", () => {
-      [fromUnit, toUnit] = [toUnit, fromUnit];
-      fromUnitEl.textContent = fromUnit;
-      toUnitEl.textContent = toUnit;
-
-      const fromValue = fromInput.value;
-      fromInput.value = toInput.value;
-      toInput.value = fromValue;
-
-      if (lastSource === "from") {
-        recalcFromSource(toInput, toUnit, fromInput, fromUnit);
-        lastSource = "to";
-      } else if (lastSource === "to") {
-        recalcFromSource(fromInput, fromUnit, toInput, toUnit);
-        lastSource = "from";
-      } else {
-        clearResult();
-      }
-    });
-
-    convertBtn.addEventListener("click", () => {
-      if (lastSource === "to") {
-        recalcFromSource(toInput, toUnit, fromInput, fromUnit);
-      } else {
-        recalcFromSource(fromInput, fromUnit, toInput, toUnit);
-      }
-    });
-
-    clearBtn.addEventListener("click", () => {
-      fromInput.value = "";
-      toInput.value = "";
-      lastSource = null;
-      clearResult();
-    });
-  </script>
+  <script src="unit-converter.js"></script>
 </body>
 </html>
