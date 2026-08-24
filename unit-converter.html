@@ -50,6 +50,10 @@
       color: var(--navy);
     }
 
+    .unit-pair {
+      white-space: nowrap;
+    }
+
     .converter-card {
       background: var(--coral);
       border-radius: 8px;
@@ -147,7 +151,7 @@
 <body>
   <h1>The Pursuit Unit Converter</h1>
   <h2>Convert km to miles</h2>
-  <p>Please provide values below to convert kilometer [km] to mile [mi, mi(Int)], or vice versa.</p>
+  <p>Please provide values below to convert <span class="unit-pair">kilometer [km] to mile [mi, mi(Int)]</span>,<br>or vice versa.</p>
 
   <div class="converter-card">
     <button type="button" id="swap-btn" title="Swap units" aria-label="Swap units">&#8645;</button>
