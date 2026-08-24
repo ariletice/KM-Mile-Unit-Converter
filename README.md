@@ -23,7 +23,7 @@ Open the deployed app:
 
 (`index.html` redirects `/` to [unit-converter.html](https://ariletice.github.io/KM-Mile-Unit-Converter/unit-converter.html).)
 
-Pushes to `main` republish the site via [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml).
+Pushes to `main` republish via GitHub Pages (deploy from branch `main`, folder `/`).
 
 ## Project structure
 
